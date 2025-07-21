@@ -24,7 +24,7 @@ class TestUrbanRoutes:
         # 1. Ingresar ruta
         page.set_route(data.address_from, data.address_to)
 
-        # 2. pedir un taxi
+        # 2. Pedir un taxi
         page.select_pedir_taxi()
 
         # 3. Seleccionar tarifa Comfort
@@ -32,6 +32,11 @@ class TestUrbanRoutes:
 
         # 4. Ingresar número de teléfono
         page.enter_phone_number(data.phone_number)
+
+        # 4.1 Seleccionar siguiente
+        page.click_next_button()
+
+        # 4.2 Introducir código SMS
 
         # 5. Agregar tarjeta
         page.add_card(data.card_number, data.card_code)

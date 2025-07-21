@@ -12,7 +12,8 @@ class UrbanRoutesPage:
     comfort_tariff = (By.CSS_SELECTOR, 'img[alt="Comfort"]')
     phone_button = (By.CSS_SELECTOR, "div.np-button")
     phone_button2 = (By.CSS_SELECTOR, "div.np-input")
-    phone_input = (By.CSS_SELECTOR, "div.input-container.error")
+    phone_input = (By.ID, "phone")
+    next_button = (By.CSS_SELECTOR, "button.button.full")
     submit_phone_button = (By.CSS_SELECTOR, '.smart-button-main')
     card_input = (By.ID, 'number')
     card_cvv_input = (By.ID, 'code')
@@ -43,6 +44,9 @@ class UrbanRoutesPage:
         self.wait.until(EC.element_to_be_clickable(self.phone_button)).click()
         self.wait.until(EC.element_to_be_clickable(self.phone_button2)).click()
         self.wait.until(EC.visibility_of_element_located(self.phone_input)).send_keys(phone_number)
+
+    def click_next_button(self):
+        self.wait.until(EC.element_to_be_clickable(self.next_button)).click()
 
     def add_card(self, number, cvv):
         self.driver.find_element(*self.card_input).send_keys(number)
