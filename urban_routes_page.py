@@ -10,8 +10,9 @@ class UrbanRoutesPage:
     to_field = (By.ID, 'to')
     pedir_taxi = (By.CSS_SELECTOR, ".button.round")
     comfort_tariff = (By.CSS_SELECTOR, 'img[alt="Comfort"]')
-    phone_button = (By.CSS_SELECTOR, "button.smart-button")
-    phone_input = (By.CSS_SELECTOR, "input[type='tel']")
+    phone_button = (By.CSS_SELECTOR, "div.np-button")
+    phone_button2 = (By.CSS_SELECTOR, "div.np-input")
+    phone_input = (By.CSS_SELECTOR, "div.input-container.error")
     submit_phone_button = (By.CSS_SELECTOR, '.smart-button-main')
     card_input = (By.ID, 'number')
     card_cvv_input = (By.ID, 'code')
@@ -33,7 +34,6 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.to_field).send_keys(to_address)
 
     def select_pedir_taxi(self):
-        #self.driver.find_element(*self.pedir_taxi).click()
         self.wait.until(EC.element_to_be_clickable(self.pedir_taxi)).click()
 
     def select_tariff_comfort(self):
@@ -41,8 +41,8 @@ class UrbanRoutesPage:
 
     def enter_phone_number(self, phone_number):
         self.wait.until(EC.element_to_be_clickable(self.phone_button)).click()
+        self.wait.until(EC.element_to_be_clickable(self.phone_button2)).click()
         self.wait.until(EC.visibility_of_element_located(self.phone_input)).send_keys(phone_number)
-
 
     def add_card(self, number, cvv):
         self.driver.find_element(*self.card_input).send_keys(number)
