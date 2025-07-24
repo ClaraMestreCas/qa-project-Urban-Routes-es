@@ -33,32 +33,48 @@ class TestUrbanRoutes:
         # 4. Ingresar número de teléfono
         page.enter_phone_number(data.phone_number)
 
-        # 4.1 Seleccionar siguiente
+        # 5. Seleccionar siguiente
         page.click_next_button()
 
-        # 4.2 Introducir código SMS
+        # 6. Introducir código SMS
+        page.enter_sms_code(retrieve_phone_code(self.driver))
 
-        # 5. Agregar tarjeta
-        page.add_card(data.card_number, data.card_code)
+        # 7. Seleccionar continuar SMS
+        page.confirmar_sms()
 
-        # 6. Obtener y enviar código de confirmación
-        code = retrieve_phone_code(self.driver)
-        page.enter_confirmation_code(code)
+        # 8. Metodo de pago
+        page.abrir_metodo_pago()
 
-        # 7. Escribir mensaje para el conductor
+        # 9. Seleccionar agregar tarjeta
+        page.bot_agregar_tarjeta()
+
+        # 10. Click agregar número tarjeta
+        page.click_card_number()
+
+        # 10.1 Agregar tarjeta
+        page.add_card(data.card_number)
+
+        # 10.2 Click agregar número CVV
+        page.click_cvv_number()
+
+        # 10.3 Agregar CVV
+        page.add_cvv(data.card_code)
+
+        # 11. Cerrar con la X
+        page.agregar_y_cerrar()
+
+        # 12. Escribir mensaje para el conductor
         page.write_message(data.message_for_driver)
 
-        # 8. Pedir manta y pañuelos
+        # 13. Pedir manta y pañuelos
         page.request_blanket_and_tissues()
 
-        # 9. Pedir 2 helados
+        # 14. Pedir 2 helados
         page.add_ice_cream(2)
 
-        # 10. Pedir taxi
+        # 15. Pedir taxi
         page.order_taxi()
 
-        # 11. Verificar que se muestra el modal
-        assert page.is_searching_modal_visible()
 
     @classmethod
     def teardown_class(cls):

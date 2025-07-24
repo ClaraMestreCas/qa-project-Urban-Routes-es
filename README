@@ -1,0 +1,29 @@
+# qa-project-Urban-Routes-es
+
+Este proyecto es un conjunto de pruebas automatizadas con Selenium WebDriver
+diseñadas para verificar el correcto funcionamiento del sitio web Urban Routes.
+El proyecto está desarrollado en Python utilizando PyCharm como entorno de desarrollo.
+
+## Estructura del Proyecto:
+
+qa-project-Urban-Routes-es/
+── main.py # Script principal para ejecutar las pruebas
+── test_urban_routes.py # Contiene las clases y métodos de prueba
+── urban_routes_page.py # Contiene localizadores y métodos de interacción con la página
+── data.py # Contiene datos de prueba reutilizables
+── README.md # Documentación del proyecto
+
+## Tecnologías y Herramientas Utilizadas:
+
+- Lenguaje: Python
+- Automatización: Selenium WebDriver
+- Entorno de desarrollo:PyCharm
+- Modelo de diseño: Page Object Model (POM)
+- Control de versiones: Git
+
+## Instrucciones para Ejecutar las Pruebas:
+
+1. Instalar Selenium
+2. Configurar el WebDriver
+3. Ejecutar las pruebas
+

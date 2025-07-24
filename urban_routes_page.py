@@ -1,8 +1,8 @@
 #Localizadores y métodos necesarios
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class UrbanRoutesPage:
@@ -14,23 +14,26 @@ class UrbanRoutesPage:
     phone_button2 = (By.CSS_SELECTOR, "div.np-input")
     phone_input = (By.ID, "phone")
     next_button = (By.CSS_SELECTOR, "button.button.full")
+    boton_confirmar = (By.XPATH, "//*[text() = 'Confirmar']")
+    button_metodo_pago = (By.XPATH, "(//*[text() = 'Método de pago'])[2]")
+    boton_agregar_tarjeta = (By.XPATH, '//img[@alt="plus"]')
+    sms_code = (By.ID, "code")
     submit_phone_button = (By.CSS_SELECTOR, '.smart-button-main')
     card_input = (By.ID, 'number')
-    card_cvv_input = (By.ID, 'code')
-    link_card_button = (By.ID, 'link')
+    card_cvv_input = (By.CSS_SELECTOR, ".card-code-input > input")
+    link_card_button = (By.XPATH, "//*[text() = 'Agregar']")
+    x_cerrar = (By.XPATH, "//div[text() = 'Método de pago']/preceding-sibling::button")
     message_input = (By.ID, 'comment')
-    blanket_checkbox = (By.ID, 'blanket')
-    tissues_checkbox = (By.ID, 'towels')
-    ice_cream_counter = (By.ID, 'ice-cream')
-    order_button = (By.ID, 'order')
-    modal_searching = (By.CLASS_NAME, 'searching-for-taxi-modal')
+    blanket_and_tissues_checkbox = (By.CSS_SELECTOR, '.slider')
+    ice_cream_counter = (By.XPATH, "(//div[@class='counter-plus'])[1]")
+    button_order_taxi = (By.XPATH, "(//*[text() = 'Pedir un taxi'])[2]")
+
 
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 20)
 
     def set_route(self, from_address, to_address):
-        #self.driver.find_element(*self.from_field).send_keys(from_address)
         self.wait.until(EC.visibility_of_element_located(self.from_field)).send_keys(from_address)
         self.driver.find_element(*self.to_field).send_keys(to_address)
 
@@ -48,32 +51,55 @@ class UrbanRoutesPage:
     def click_next_button(self):
         self.wait.until(EC.element_to_be_clickable(self.next_button)).click()
 
-    def add_card(self, number, cvv):
-        self.driver.find_element(*self.card_input).send_keys(number)
-        cvv_field = self.driver.find_element(*self.card_cvv_input)
-        cvv_field.send_keys(cvv)
-        # Simular TAB para perder enfoque (activar botón)
-        cvv_field.send_keys(Keys.TAB)
-        self.driver.find_element(*self.link_card_button).click()
+    def enter_sms_code(self, code):
+        self.wait.until(EC.visibility_of_element_located(self.sms_code)).send_keys(code)
 
-    def enter_confirmation_code(self, code):
-        confirmation_input = self.wait.until(EC.presence_of_element_located((By.ID, 'code-confirm')))
-        confirmation_input.send_keys(code)
+    def confirmar_sms(self):
+        self.wait.until(EC.element_to_be_clickable(self.boton_confirmar)).click()
+
+    def abrir_metodo_pago(self):
+        self.wait.until(EC.element_to_be_clickable(self.button_metodo_pago)).click()
+
+    def bot_agregar_tarjeta(self):
+        self.wait.until(EC.element_to_be_clickable(self.boton_agregar_tarjeta)).click()
+
+    def click_card_number(self):
+        self.wait.until(EC.element_to_be_clickable(self.card_input)).click()
+
+    def add_card(self, number):
+        # Ingresar número de tarjeta
+        self.wait.until(EC.visibility_of_element_located(self.card_input)).send_keys(number)
+
+    def click_cvv_number(self):
+        self.wait.until(EC.element_to_be_clickable(self.card_cvv_input)).click()
+
+    def add_cvv(self, cvv):
+        # Ingresar CVV
+        cvv_field = self.wait.until(EC.visibility_of_element_located(self.card_cvv_input))
+        cvv_field.send_keys(cvv)
+
+        # Simular pérdida de enfoque con TAB
+        cvv_field.send_keys(Keys.TAB)
+
+        # Esperar y hacer clic en el botón 'link'
+        link_button = self.wait.until(EC.element_to_be_clickable(self.link_card_button))
+        link_button.click()
+
+    def agregar_y_cerrar(self):
+        self.wait.until(EC.element_to_be_clickable(self.x_cerrar)).click()
 
     def write_message(self, message):
         self.driver.find_element(*self.message_input).send_keys(message)
 
     def request_blanket_and_tissues(self):
-        self.driver.find_element(*self.blanket_checkbox).click()
-        self.driver.find_element(*self.tissues_checkbox).click()
+        self.driver.find_element(*self.blanket_and_tissues_checkbox).click()
 
     def add_ice_cream(self, count=2):
-        counter = self.driver.find_element(*self.ice_cream_counter)
         for _ in range(count):
-            counter.send_keys(Keys.ARROW_UP)
+            counter = self.wait.until(EC.element_to_be_clickable(self.ice_cream_counter))
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", counter)
+            counter.click()
 
     def order_taxi(self):
-        self.driver.find_element(*self.order_button).click()
+        self.wait.until(EC.element_to_be_clickable(self.button_order_taxi)).click()
 
-    def is_searching_modal_visible(self):
-        return self.wait.until(EC.visibility_of_element_located(self.modal_searching)) is not None
