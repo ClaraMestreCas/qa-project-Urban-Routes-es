@@ -33,7 +33,7 @@ class UrbanRoutesPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 20)
 
-    #1ok
+    #1
     def set_route(self, from_address, to_address):
         self.wait.until(EC.visibility_of_element_located(self.from_field)).send_keys(from_address)
         self.driver.find_element(*self.to_field).send_keys(to_address)
@@ -42,7 +42,7 @@ class UrbanRoutesPage:
     def get_to_adress(self):
         return self.wait.until(EC.visibility_of_element_located(self.to_field)).get_property("value")
 
-    #2ok
+    #2
     def select_pedir_taxi(self):
         self.wait.until(EC.element_to_be_clickable(self.pedir_taxi)).click()
     def is_select_taxi_enabled(self):
@@ -50,7 +50,7 @@ class UrbanRoutesPage:
     def select_tariff_comfort(self):
         self.wait.until(EC.element_to_be_clickable(self.comfort_tariff)).click()
 
-    #3ok
+    #3
     def enter_phone_number(self, phone_number):
         self.wait.until(EC.element_to_be_clickable(self.phone_button)).click()
         self.wait.until(EC.element_to_be_clickable(self.phone_button2)).click()
@@ -64,7 +64,7 @@ class UrbanRoutesPage:
     def confirmar_sms(self):
         self.wait.until(EC.element_to_be_clickable(self.boton_confirmar)).click()
 
-    #4ok
+    #4
     def abrir_metodo_pago(self):
         self.wait.until(EC.element_to_be_clickable(self.button_metodo_pago)).click()
     def is_open_metod_pago_enabled(self):
@@ -92,7 +92,7 @@ class UrbanRoutesPage:
     def agregar_y_cerrar(self):
         self.wait.until(EC.element_to_be_clickable(self.x_cerrar)).click()
 
-    #5ok
+    #5
     def write_message(self, message):
         self.driver.find_element(*self.message_input).send_keys(message)
     def get_write_message(self):
