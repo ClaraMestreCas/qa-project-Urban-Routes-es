@@ -7,7 +7,7 @@ El proyecto está desarrollado en Python utilizando PyCharm como entorno de desa
 ## Estructura del Proyecto:
 
 qa-project-Urban-Routes-es/
-── main.py # Script principal para ejecutar las pruebas
+── phone_code.py # Script principal para ejecutar las pruebas
 ── test_urban_routes.py # Contiene las clases y métodos de prueba
 ── urban_routes_page.py # Contiene localizadores y métodos de interacción con la página
 ── data.py # Contiene datos de prueba reutilizables

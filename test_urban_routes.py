@@ -1,6 +1,6 @@
 #Pruebas de clase
 import data
-from main import retrieve_phone_code
+from phone_code import retrieve_phone_code
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from urban_routes_page import UrbanRoutesPage
