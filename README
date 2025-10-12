@@ -9,6 +9,14 @@ limpio, escalable y fácil de mantener.
 
 ### 🏗️ Estructura del Proyecto:
 
+```plaintext
+qa-project-Urban-Routes-es/
+├── phone_code.py          # Script principal para ejecutar las pruebas
+├── test_urban_routes.py   # Contiene las clases y métodos de prueba
+├── urban_routes_page.py   # Contiene localizadores y métodos de interacción con la página
+├── data.py                # Contiene datos de prueba reutilizables
+└── README.md              # Documentación del proyecto
+
 qa-project-Urban-Routes-es/
 ── phone_code.py # Script principal para ejecutar las pruebas
 ── test_urban_routes.py # Contiene las clases y métodos de prueba
