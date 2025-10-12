@@ -7,6 +7,8 @@ Está desarrollado en **Python** utilizando **PyCharm** como entorno de desarrol
 siguiendo el modelo de diseño **Page Object Model (POM)** para garantizar un código
 limpio, escalable y fácil de mantener.
 
+---
+
 ### 🏗️ Estructura del Proyecto:
 
 ```plaintext
