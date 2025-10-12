@@ -11,7 +11,7 @@ limpio, escalable y fácil de mantener.
 
 ### 🏗️ Estructura del Proyecto
 
-- `phone_code` - Script principal para ejecutar las pruebas
+- phone_code: Script principal para ejecutar las pruebas
 - test_urban_routes: Contiene las clases y métodos de prueba
 - urban_routes_page: Contiene localizadores y métodos de interacción con la página
 - data.py: Contiene datos de prueba reutilizables
