@@ -1,4 +1,4 @@
-#Pruebas Automatizadas – Urban Routes
+PRUEBAS AUTOMATIZADAS – Urban Routes
 
 Este proyecto contiene un conjunto de pruebas automatizadas con Selenium WebDriver diseñadas
 para verificar el correcto funcionamiento del sitio web Urban Routes.
@@ -9,7 +9,7 @@ limpio, escalable y fácil de mantener.
 
 ---
 
-### 🏗️ Estructura del Proyecto
+🏗️ Estructura del Proyecto
 
 - phone_code: Script principal para ejecutar las pruebas
 - test_urban_routes: Contiene las clases y métodos de prueba
@@ -25,7 +25,7 @@ limpio, escalable y fácil de mantener.
 - 🧩 Modelo de diseño: **Page Object Model (POM)**
 - 🌿 Control de versiones: **Git**
 
-Instrucciones para Ejecutar las Pruebas:
+📖 Instrucciones para Ejecutar las Pruebas:
 
 1. Instalar Selenium
 2. Configurar el WebDriver
